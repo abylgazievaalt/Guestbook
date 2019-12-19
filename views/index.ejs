@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guestbook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Guestbook</h1>
+    <% if (session.errors) { %>
+        <section class="error">
+            <p><%= session.errors.join("<br>") %></p>
+            <% session.errors = [] %>
+        </section>
+    <% } %>
+    <% for (let entry of messages) { %>
+        <%= entry.name %> <br>
+        <%= entry.message %> <br>
+    <% } %>
+    <form action="/entry/create" method="POST">
+        <!--<label for="name">Input your name</label><br>-->  
+        <input name="name"type="text", placeholder="Input your name"><br>
+        <textarea name="message" cols="30" rows="10", placeholder="Input your message"></textarea><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
